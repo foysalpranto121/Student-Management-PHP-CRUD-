@@ -1,0 +1,26 @@
+INSERT INTO students (Id, name, department) 
+VALUES (1, 'Mahin', 'SWE'), (2, 'Pranto', 'SWE');
+// if u face any problem to input data 
+u can solve like this 
+// also solved for increment related issues
+
+
+
+step1
+SELECT Id, COUNT(*) 
+FROM students 
+GROUP BY Id 
+HAVING COUNT(*) > 1;
+
+step 2
+CREATE TABLE students_backup AS SELECT * FROM students;
+
+
+step 3
+SET @id = 0;
+UPDATE students SET Id = (@id := @id + 1);
+
+step 4
+ALTER TABLE students
+MODIFY Id INT NOT NULL AUTO_INCREMENT,
+ADD PRIMARY KEY (Id);
